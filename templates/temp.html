@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Temperature Converter</h2>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    {% if result is not none %}
+        <div class="result-box">
+            <h3>Result: {{ result }}</h3>
+            <a href="/temperature">Reset</a>
+        </div>
+    {% else %}
+        <form method="POST">
+            <p>Enter value:</p>
+            <input type="number" step="any" name="val_to_convert" required>
+
+            <p>From:</p>
+            <select name="unit_from">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+
+            <p>To:</p>
+            <select name="unit_to">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+
+            <br><br>
+            <button type="submit">Convert</button>
+        </form>
+    {% endif %}
+{% endblock %}
